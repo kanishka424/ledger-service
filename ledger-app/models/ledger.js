@@ -31,12 +31,11 @@ function lineItemCreate(startDate, endDate, paymentFrequency, weeklyRate) {//cre
 
 
     while (endDate.isAfter(lineItemStartDate)) {
-        console.log("inside while")
 
         let lineItem;
         let amount;
 
-        if (curLedgerObj.paymentFrequency.toLowerCase() === "monthly") {//executes if the payment frquency is given as "Monthly"
+        if (curLedgerObj.paymentFrequency === "monthly") {//executes if the payment frquency is given as "Monthly"
             endDayOfNextMonth = moment(lineItemStartDate).add(1, "months").endOf('month').endOf('day');
             if (lineItemEndDate === undefined) {
                 lineItemEndDate = moment(lineItemStartDate).add(1, "months").set('date', monthlyDate).endOf('day');
@@ -57,10 +56,8 @@ function lineItemCreate(startDate, endDate, paymentFrequency, weeklyRate) {//cre
 
         } else {//this logic will execute if we receive "weekly" or "fortnightly"
             lineItemEndDate = moment(lineItemStartDate).add(curLedgerObj.days - 1, 'days').endOf('day');
-            console.log("first", lineItemStartDate)
-            console.log(lineItemEndDate)
+          
             if (!lineItemEndDate.isAfter(endDate)) {
-                console.log(!lineItemEndDate.isAfter(endDate))
 
                 amount = curLedgerObj.amount;
                 lineItem = new LineItem(lineItemStartDate.toString(), lineItemEndDate.toString(), amount.toFixed(2))
