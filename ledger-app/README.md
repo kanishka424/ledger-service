@@ -1,6 +1,6 @@
 **#RUNNING THE APP**
-
 To run the app use "nodemon index.js"
+I also have used mongodb/mongoose
 
 
 

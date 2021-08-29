@@ -61,7 +61,7 @@ describe('Number of line items check', () => {
     test(('Expected line item number should match for weekly payments'), () => {
         const results = lineItemCreate(moment("2020-01-30"), moment("2020-05-01"), "weekly", 555);
         let resultsLength = results.length;
-        expect(resultsLength).toBe(12);
+        expect(resultsLength).toBe(14);
     }
     );
 

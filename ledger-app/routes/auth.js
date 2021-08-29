@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res) => {//wil be called when a user try to log in
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 
 })
 
-function validate(user) {
+function validate(user) {//we validate the user details 
     let schema = Joi.object({
         email: Joi.string().min(5).max(255).required().email(),
         password: Joi.string().min(5).max(255).required()
